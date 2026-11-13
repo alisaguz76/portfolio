@@ -1,0 +1,502 @@
+﻿/* ============================================================
+   1. УНИВЕРСАЛЬНЫЙ СЕЛЕКТОР
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0; /*убираем внутренние отступы*/
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif; /* Новый шрифт */
+}
+
+/* ============================================================
+   2. BODY — фон с градиентом
+   ============================================================ */
+body {
+    background: linear-gradient(135deg, #f0e6ff 0%, #d9c8ff 50%, #c4a4ff 100%);
+    background-attachment: fixed;
+    color: #333;
+    line-height: 1.6;
+}
+/* ============================================================
+   3. ДЕКОРАТИВНЫЕ ПЯТНА НА ФОНЕ
+   ============================================================ */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: #9b59b6;
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: #a29bfe;
+    bottom: -150px;
+    right: -150px;
+}
+
+/* ============================================================
+   СЕКЦИЯ 4: HERO (На весь экран)
+   ============================================================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+    overflow: hidden; /* Обрезаем фото, если оно вылезет */
+}
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -10%; /* Сдвигаем кляксу вправо, под фото */
+        transform: translateY(-50%) rotate(-30deg); /* Наклоняем её для эффекта небрежности */
+
+        width: 60vw; /* Огромный размер по ширине */
+        height: 80vh; /* Огромный размер по высоте */
+        /* Самое главное: магия кляксы! Делаем углы разного размера */
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        /* Яркий, насыщенный фиолетовый градиент */
+        background: linear-gradient(135deg, #8e44ad 0%, #6c5ce7 100%);
+        z-index: 0; /* Клякса на заднем плане */
+        opacity: 0.8; /* Делаем её чуть прозрачной, чтобы фото смотрелось гармонично */
+        /* Легкая тень для объема */
+        box-shadow: inset 0 0 80px #fff;
+    }
+
+/* ============================================================
+   КОНТЕЙНЕР (Текст слева, фото справа)
+   ============================================================ */
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   5. ФОТО
+   ============================================================ */
+/* ФОТО (Абсолютное позиционирование) */
+.hero-photo {
+    position: absolute;
+    right: -400px; /* Небольшой отступ от правого края */
+    bottom: -40px; /* Сдвигаем вниз, чтобы обрезалось */
+    z-index: 3;
+    height: 100vh; /* Делаем фото еще больше (вылезет за верхний край) */
+}
+
+.avatar {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: bottom right;
+    border: none;
+    box-shadow: none;
+    /* Тень по контуру (сдвиг вправо-вниз на 15px, без размытия) */
+    filter: drop-shadow(15px 15px 0px #fff);
+    /* Плавный переход для эффекта при наведении */
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+    .avatar:hover {
+        filter: drop-shadow(25px 25px 0px #a29bfe);
+        transform: translate(-5px, -5px);
+    }
+
+/* ============================================================
+   6. ТЕКСТ
+   ============================================================ */
+.hero-text {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding-left: 80px; /* Отодвигаем текст от левого края */
+
+}
+
+/* ОГРОМНЫЙ заголовок */
+.hero-title {
+    font-size: 110px; /* Сделаем еще больше */
+    font-weight: 900;
+    color: #1a1a2e;
+    line-height: 0.87;
+    letter-spacing: -2px; /* Сжимаем буквы, чтобы слово стало шире и мощнее */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* Маленький текст для профессии */
+.small-text {
+    font-size: 40px;
+    letter-spacing: 0;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.hero-subtitle {
+    font-size: 35px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 30px;
+    line-height: 1.3;
+}
+
+.hero-desc {
+    font-size: 20px;
+}
+
+/* Выделение текста "маркером" */
+/* Выделения цветом (как на референсе) */
+.highlight-blue {
+    color: #6c5ce7; /* Сине-фиолетовый */
+    text-shadow: 3px 3px 0px #1a1a2e; /* Жесткая тень для объема */
+}
+
+.highlight-pink {
+    background-color: #ff7edb;
+    padding: 0 10px;
+    border: 2px solid #1a1a2e;
+    border-radius: 4px;
+    transform: rotate(-2deg);
+    display: inline-block;
+    font-size: 24px;
+}
+
+/* Декоративные элементы */
+.deco {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.deco-star {
+    top: -20%;
+    right: 45%; /* Ставим звездочку над текстом */
+    font-size: 500px;
+    color: #fff;
+    transform: rotate(15deg); /* Наклоняем */
+    text-shadow: 4px 4px 4px #8e44ad; /* Добавляем жесткую черную тень */
+}
+
+/* Зигзаг/Закорючка */
+.deco-squiggle {
+    top: 5%;
+    right: 5%;
+    font-size: 200px;
+    color: #fff;
+    transform: rotate(-20deg);
+    text-shadow: 3px 3px 0px #8e44ad;
+}
+
+   
+
+/* ============================================================
+   7. КНОПКА
+   ============================================================ */
+.btn {
+    display: inline-block;
+    margin-top: 40px; /* Опускаем кнопку вниз */
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #9b59b6, #6c5ce7);
+    color: #fff;
+    text-decoration: none; /*Убирает подчёркивание ссылки*/
+    border-radius: 12px;
+    font-weight: 600; /*Полужирный*/
+    font-size: 20px;
+    box-shadow: 0 10px 25px rgba(155, 89, 182, 0.4); /*Фиолетовое свечение снизу*/
+    transition: all 0.3s ease; /*Плавные переходы всех свойств*/
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn:hover {
+        transform: translateY(-3px); /*сдвиг вверх на 3px */
+        box-shadow: 0 15px 35px #fff;
+    }
+
+    .btn::after {
+        content: " →";
+    }
+
+/* ============================================================
+   8. АДАПТИВНОСТЬ
+   ============================================================ */
+/*Примени эти стили ТОЛЬКО ЕСЛИ экран соответствует условию*/
+@media (max-width: 800px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 25px;
+        gap: 30px;
+    }
+
+    .hero-title {
+        font-size: 26px;
+    }
+
+        .hero-title + .hero-subtitle {
+            font-size: 17px;
+        }
+
+    .hero-desc {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .avatar {
+        width: 280px; /* Сделаем фото чуть больше */
+        height: 280px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 8px solid #fff; /* Толстая белая рамка */
+        box-shadow: 8px 8px 0px #9b59b6; /* Жёсткая фиолетовая тень (тренд!) */
+        transition: transform 0.4s ease;
+        display: block;
+    }
+
+        .avatar:hover {
+            transform: translate(-5px, -5px); /* При наведении тень становится больше */
+            box-shadow: 12px 12px 0px #9b59b6;
+        }
+
+    .blob {
+        opacity: 0.3; /*Пятна стали прозрачнее*/
+    }
+}
+
+/* ==========================================
+   СЕКЦИЯ 2: МОИ ДОСТИЖЕНИЯ
+   ========================================== */
+
+/* Фон секции (светло-фиолетовый, чтобы контрастировал с белым) */
+.achievements {
+    background-color: #fff;
+    padding: 100px 20px; /* Отступы сверху/снизу и по бокам */
+    width: 100%; /* Растягиваем на весь экран */
+    position: relative;
+    z-index: 2;
+    /* Добавляем красивую тень сверху, чтобы отделить её от первой секции */
+    box-shadow: 0 -10px 30px rgba(155, 89, 182, 0.1);
+    min-height: 100vh;
+    overflow: hidden; /* ВАЖНО: обрезаем всё, что вылезает за секцию */
+}
+
+/* Центрируем контент (ширина 1140-1440px по ТЗ) */
+.achievements-container {
+    max-width: 1600px;
+    width: 95%; /* Занимает 95% ширины экрана (оставляя отступы по краям) */
+    margin: 0 auto; /* Центрируем */
+}
+
+/* Заголовок секции */
+.achievements-title {
+    text-align: center;
+    font-size: 80px; /* Огромный */
+    font-weight: 900;
+    color: #1a1a2e;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 50px;
+    position: relative;
+    text-shadow: 4px 4px 0px #a29bfe; /* Фиолетовая жесткая тень */
+    z-index: 2;
+}
+
+    /* Псевдоэлемент: фиолетовая полоска под заголовком */
+    .achievements-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 4px;
+        background-color: #1a1a2e;
+        margin: 15px auto 0;
+        border-radius: 2px;
+    }
+
+/* FLEXBOX: Выстраиваем карточки в ряд */
+.cards-wrapper {
+    display: flex; /* Включаем Flexbox */
+    gap: 20px; /* Расстояние между карточками */
+    flex-wrap: wrap; /* Если не влезут — перенесутся на новую строку */
+    margin-top: 80px;
+}
+
+/* Стилизация самой карточки */
+.card {
+    background-color: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* Магия ровных колонок: */
+    flex: 1 1 0%; /* Карточки делят между собой всё доступное место поровну */
+    min-width: 300px;
+    /* Добавим тонкую фиолетовую рамку, чтобы карточки выделялись на белом фоне */
+    border: 5px solid #6c5ce7;
+    min-height: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2;
+}
+
+    /* Эффект при наведении на карточку */
+    .card:hover {
+        transform: translateY(-10px); /* Приподнимаем карточку */
+        box-shadow: 0 10px 30px #6c5ce7; /* Тень становится больше */
+    }
+
+/* Блок с картинкой */
+.card-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Картинка заполняет блок без искажений */
+        transition: transform 0.5s ease;
+    }
+
+/* Увеличение картинки при наведении на карточку */
+.card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+/* Текстовый блок внутри карточки */
+.card-content {
+    padding: 35px 30px; /* Увеличиваем отступы внутри карточки */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Текст занимает всё оставшееся место, выталкивая кнопку вниз */
+}
+
+    .card-content h3 {
+        font-size: 24px;
+        color: #6c5ce7; /* Заголовки внутри карточек делаем фиолетовыми */
+        margin-bottom: 15px;
+        line-height: 1.3;
+        font-weight: 800;
+    }
+
+    .card-content p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 25px;
+        flex-grow: 1; /* Текст занимает место, чтобы кнопки были на одном уровне */
+    }
+
+/* Кнопка "Подробнее" */
+.card-btn {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 20px;
+    background-color: #6c5ce7;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+    .card-btn:hover {
+        background-color: #5b4bc4;
+        transform: translateY(-2px);
+    }
+
+/* АДАПТИВНОСТЬ (Мобильные устройства) */
+
+@media (max-width: 768px) {
+    .cards-wrapper {
+        flex-direction: column; /* Карточки встают в колонку */
+        align-items: center;
+    }
+
+    .achievements-title {
+        font-size: 28px;
+        margin-bottom: 1200px;
+    }
+
+    .card {
+        width: 100%; /* Карточка занимает всю ширину */
+        max-width: 400px; /* Но не растягивается слишком сильно */
+    }
+}
+
+/* Разрешаем странице прокручиваться */
+html, body {
+    overflow-x: hidden;
+    overflow-y: auto; /* Разрешаем вертикальную прокрутку */
+    height: auto; /* Убираем жесткую привязку к высоте экрана */
+}
+
+/* ==========================================
+   ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ДЛЯ СЕКЦИИ 2
+   ========================================== */
+
+/* Общие стили (чтобы они не мешали кликать по карточкам) */
+.deco-ach {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1; /* Над белым фоном, но под карточками */
+}
+
+/* 1. Огромная клякса за заголовком */
+.deco-ach-blob {
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%) rotate(7deg);
+    width: 800px;
+    height: 250px;
+    background: linear-gradient(135deg, #f0e6ff 0%, #6c5ce7 100%); /* Светло-фиолетовый */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Магия кляксы */
+    opacity: 0.8;
+}
+
+/* 2. Левая звезда (нижний левый угол) */
+.deco-ach-star-left {
+    bottom: -15%;
+    left: -1%;
+    font-size: 350px;
+    color: #fff; /* Розовая звезда */
+    background: linear-gradient(135deg, #f0e6ff 0%, #6c5ce7 100%);
+    border-radius: 40% 60% 70% 30% / 30% 40% 80% 50%;
+    width: 400px;
+    height: -18px;
+    text-shadow: 6px 6px 6px #8e44ad; /* Жесткая фиолетовая тень */
+    transform: rotate(-20deg);
+    left: -2%;
+}
+
+/* 3. Правая звезда (верхний правый угол) */
+.deco-ach-star-right {
+    top: -18%;
+    right: 3%;
+    font-size: 400px;
+    color: #6c5ce7; /* Розовая звезда */
+    text-shadow: 7px 7px 6px #a29bfe; /* Жесткая черная тень */
+    transform: rotate(20deg);
+}
+
+/* 4. Зигзаг в правом нижнем углу */
+.deco-ach-squiggle {
+    bottom: -25%;
+    right: -5%;
+    font-size: 500px; /* Делаем его огромным */
+    color: #6c5ce7; /* Ярко-розовый, чтобы выделялся на белом */
+    transform: rotate(-65deg); /* Наклоняем для небрежности */
+    text-shadow: 7px 7px 7px #8e44ad; /* Жесткая фиолетовая тень, как у наклеек */
+    z-index: 1; /* Над белым фоном, но под карточками */
+}
